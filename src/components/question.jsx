@@ -6,26 +6,23 @@ import { useNavigate } from "react-router-dom";
 const Question = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { questions, currentQuestionIndex } = useSelector(
-    (state) => state.quiz
-  );
+  const { questions, currentQuestionIndex } = useSelector((state) => state.quiz);
   const currentQuestion = questions[currentQuestionIndex];
 
   const [selectedAnswer, setSelectedAnswer] = useState(
     currentQuestion.type === "single" ? "" : []
   );
   const [timeLeft, setTimeLeft] = useState(30);
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Effect to handle timer countdown
   useEffect(() => {
-    if (isSubmitting) return; // Skip timer when submitting
+    if (isSubmitting) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime === 1) {
           dispatch(answerQuestion({ answer: selectedAnswer, timeOut: true }));
-          setTimeLeft(30); // Reset timer to 30 seconds on timeout
+          setTimeLeft(30);
           return 30;
         }
         return prevTime - 1;
@@ -33,7 +30,7 @@ const Question = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [selectedAnswer, dispatch, isSubmitting]); // Include `isSubmitting` in dependency array
+  }, [selectedAnswer, dispatch, isSubmitting]);
 
   const handleAnswerChange = (option) => {
     if (currentQuestion.type === "single") {
@@ -50,10 +47,10 @@ const Question = () => {
   };
 
   const handleSubmit = () => {
-    setIsSubmitting(true); // Set submitting state to true
+    setIsSubmitting(true);
     dispatch(answerQuestion({ answer: selectedAnswer, timeOut: false }));
-    setTimeLeft(30); // Reset timer on submit
-    setIsSubmitting(false); // Reset submitting state
+    setTimeLeft(30);
+    setIsSubmitting(false);
 
     if (currentQuestionIndex === 9) {
       navigate("/results");
@@ -61,24 +58,23 @@ const Question = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-100 to-purple-100 flex flex-col items-center justify-center p-6">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-xl w-full border border-gray-200">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white p-6 flex flex-col items-center justify-center">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full border border-gray-300">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
           {currentQuestion.question}
         </h2>
-        <div className="flex flex-wrap gap-4 mb-6 justify-center">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           {currentQuestion.options.map((option) => (
             <button
               key={option}
               onClick={() => handleAnswerChange(option)}
-              className={`py-3 px-6 rounded-lg font-semibold transition-colors transform
+              className={`py-3 px-4 rounded-lg text-white font-semibold transition-transform transform
                 ${currentQuestion.type === "single" && selectedAnswer === option
-                  ? "bg-blue-600"
+                  ? "bg-blue-500 scale-105"
                   : currentQuestion.type === "multiple" && selectedAnswer.includes(option)
-                  ? "bg-blue-600"
-                  : "bg-gray-300"}
-                hover:bg-blue-700 hover:text-white text-gray-800
-                focus:outline-none focus:ring-4 focus:ring-blue-300`}
+                  ? "bg-blue-500 scale-105"
+                  : "bg-gray-400 hover:bg-gray-500"} 
+                focus:outline-none focus:ring-2 focus:ring-blue-300`}
             >
               {option}
             </button>
@@ -86,13 +82,12 @@ const Question = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold transition-colors duration-300
-            hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+          className="w-full py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white font-bold rounded-lg shadow-md hover:from-teal-600 hover:to-green-600 transition-colors duration-300"
         >
           Submit Answer
         </button>
-        <div className="mt-4 text-center text-lg text-gray-700">
-          Time Left: <span className="font-bold">{timeLeft} seconds</span>
+        <div className="mt-4 text-lg font-semibold text-gray-700">
+          Time Left: {timeLeft} seconds
         </div>
       </div>
     </div>
