@@ -42,6 +42,11 @@ A collection of navigational components for React.
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 A programming language used to create interactive effects within web browsers.
 
+## Deployment
+
+The project is deployed and accessible via the following link: [LemonCraft Quiz Web App](https://lemoncraftquiz.vercel.app). To deploy the app yourself, you can use platforms like Vercel, Netlify, or GitHub Pages, and follow their respective deployment guides.
+
+
 ## Instructions
 
 ### Cloning the Repository
@@ -95,9 +100,6 @@ You can learn more about the technologies used and best practices in the followi
 - [React Router Documentation](https://reactrouter.com/)
 - [JavaScript Info](https://javascript.info/)
 
-## Deployment
-
-The project is deployed and accessible via the following link: [LemonCraft Quiz Web App](https://github.com/Ramavtar-Nagar/LemonCraft_Quiz_Web-App). To deploy the app yourself, you can use platforms like Vercel, Netlify, or GitHub Pages, and follow their respective deployment guides.
 
 ## E-mail Address
 
