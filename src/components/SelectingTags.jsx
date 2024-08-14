@@ -34,7 +34,7 @@ const TagSelection = () => {
         <div className="flex flex-wrap gap-4 mb-8 justify-center">
         {ques.uniqueTags.map((tag, index) => (
           <button
-            key={`${tag}-${index}`} // Combine tag and index for a unique key
+            key={`${tag}-${index}`}
             onClick={() => handleTagClick(tag)}
             className={`py-3 px-6 rounded-full text-white font-semibold transition-transform transform 
               ${
