@@ -16,10 +16,9 @@ The LemonCraft Quiz Web App is an interactive platform designed to provide a fun
 The project is organized as follows:
 
 - **src/**: Contains the source code
-  - **components/**: Reusable UI components such as buttons, cards, etc.
+  - **components/**: Reusable UI components OR the main pages of the app such as TagSelection, Quiz, and Results
   - **redux/**: State management files including slices and store configuration
   - **data/**: Contains the quiz data and tags
-  - **pages/**: The main pages of the app such as TagSelection, Quiz, and Results
   - **assets/**: Contains static files such as images and logos
 
 ## Contributing
